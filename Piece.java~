@@ -16,5 +16,5 @@ public abstract class Piece {
 	return ycor;
     }
     
-    public abstract void move();
+    public void move();
 }
