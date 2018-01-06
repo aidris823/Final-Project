@@ -4,6 +4,11 @@ public abstract class Piece {
     private int ycor;
     private int[] coords;
 
+    public Piece(int xcor, int ycor) {
+	this.xcor = xcor;
+	this.ycor = ycor;
+    }
+    
     public int[] getCoords() {
 	return coords;
     }
