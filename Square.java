@@ -3,6 +3,7 @@ public class Square {
     private int xcor;
     private int ycor;
     public Piece piece;
+    private int color;
     
     public Square(int xcor, int ycor) {
 	this.xcor = xcor;
@@ -21,8 +22,17 @@ public class Square {
 
 	if(this.piece != null) { // if there is a piece on the square
 	    // removes current piece on square and replaces it with current piece
+	    this.piece.getStatus() = true;
 	}
 	this.piece = piece; // replaces the current piece with the piece selected
+    }
+
+    public void setColor(int color) {
+	this.color = color;
+    }
+
+    public int getColor() {
+	return color;
     }
 
     
