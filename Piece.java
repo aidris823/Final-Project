@@ -3,10 +3,14 @@ public abstract class Piece {
     private int xcor;
     private int ycor;
     private int[] coords;
+    private boolean isCaptured;
+    private String type;
 
-    public Piece(int xcor, int ycor) {
+    public Piece(int xcor, int ycor, String type) {
 	this.xcor = xcor;
 	this.ycor = ycor;
+	this.type = type;
+	isCaptured = false;
     }
     
     public int[] getCoords() {
@@ -19,6 +23,10 @@ public abstract class Piece {
 
     public int getY() {
 	return ycor;
+    }
+
+    public boolean getStatus() {
+	return isCaptured;
     }
     
     public abstract void move();
