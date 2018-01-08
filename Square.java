@@ -1,8 +1,10 @@
+
 public class Square{
     private int color;
     private int xcor;
     private int ycor;
     private int[] coordinates;
+    private boolean 
     public Square(int x, int y){
 	x = xcor;
 	y = ycor;
@@ -26,4 +28,23 @@ public class Square{
     public int getColor(){
 	return color;
     }
+
+
+    public boolean isPieceOn() {
+	if (piece == null) {
+	    return false;
+	}
+	return true;
+    }
+
+    public void takeSpot(Piece piece) {
+
+	if(this.piece != null) { // if there is a piece on the square
+	    // removes current piece on square and replaces it with current piece
+	}
+	this.piece = piece; // replaces the current piece with the piece selected
+    }
+
+    
+
 }
