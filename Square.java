@@ -1,16 +1,16 @@
-public class Square {
-
+public class Square{
+    private int color;
     private int xcor;
     private int ycor;
     public Piece piece;
     private int color;
-    
+    private int[] coordinates;
+	
     public Square(int xcor, int ycor) {
 	this.xcor = xcor;
 	this.ycor = ycor;
 	piece = null;
     }
-
     public boolean isPieceOn() {
 	if (piece == null) {
 	    return false;
@@ -36,4 +36,5 @@ public class Square {
     }
 
     
+
 }
