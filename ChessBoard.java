@@ -8,16 +8,20 @@ public class ChessBoard{
     public ChessBoard(){
 	board = Square[8][8];
     }
-    for (int i = 0; i < 8; i+=2){
-	for (int j = 0; j < 8; j += 2){
-	    (board[i][j]).setColor(white);
+    
+    public void setBoard() {
+	for (int i = 0; i < 8; i+=2){
+	    for (int j = 0; j < 8; j += 2){
+		(board[i][j]).setColor(white);
+	    }
+	}
+	for (int i = 1; i <= 7; i += 2){
+	    for (int j = 0; j < 8; j += 2){
+		(board[i][j]).setColor(black);
+	    }
 	}
     }
-    for (int i = 1; i <= 7; i += 2){
-	for (int j = 0; j < 8; j += 2){
-	    (board[i][j].setColor(black))
-		}
-    }
+    
     public static void main(String[] arguments){
 	for (int i = 0; i < 8; i++){
 	    for (int j = 0; j < 8; j++){
