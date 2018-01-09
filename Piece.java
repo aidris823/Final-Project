@@ -27,6 +27,6 @@ public abstract class Piece {
     /* CSDOJO NOTES:
 Probably can't have move method because it doesn't say which square I can go to.
 Have a legal moves */
-    public abstract Square[] getLegalMoves();+
+    public abstract Square[] getLegalMoves();
     public abstract void capture();
 }

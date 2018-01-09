@@ -1,35 +1,16 @@
-
 public class Square{
     private int color;
     private int xcor;
     private int ycor;
+    public Piece piece;
+    private int color;
     private int[] coordinates;
-    private boolean 
-    public Square(int x, int y){
-	x = xcor;
-	y = ycor;
-	coordinates = {x,y};
+	
+    public Square(int xcor, int ycor) {
+	this.xcor = xcor;
+	this.ycor = ycor;
+	piece = null;
     }
-    public void setX(int x){
-	xcor = x;
-    }
-    public void setY(int y){
-	ycor = y;
-    }
-    public int getX(){
-	return x;
-    }
-    public int getY(){
-	return y;
-    }
-    public void setColor(int c){
-	color = c;
-    }
-    public int getColor(){
-	return color;
-    }
-
-
     public boolean isPieceOn() {
 	if (piece == null) {
 	    return false;
@@ -41,8 +22,17 @@ public class Square{
 
 	if(this.piece != null) { // if there is a piece on the square
 	    // removes current piece on square and replaces it with current piece
+	    this.piece.getStatus() = true;
 	}
 	this.piece = piece; // replaces the current piece with the piece selected
+    }
+
+    public void setColor(int color) {
+	this.color = color;
+    }
+
+    public int getColor() {
+	return color;
     }
 
     
