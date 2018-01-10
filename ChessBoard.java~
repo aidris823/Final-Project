@@ -1,7 +1,0 @@
-// First, make a working board on the Terminal.
-public class ChessBoard{
-    // Background colors:
-    private static final int black = 40;
-    private static final int white = 107;
-    private 
-}
