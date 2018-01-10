@@ -42,6 +42,8 @@ public abstract class Piece {
 
     public abstract String toString();
 
+    public abstract Location
+
     /*
       Unicode for our chess pieces:
 
