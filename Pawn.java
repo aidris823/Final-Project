@@ -13,7 +13,12 @@ public class Pawn extends Piece {
     }
 
     public  String toString() {
-	return null;
+        if (color == Piece.WHITE) {
+	    return "\u265F";
+	}
+	else {
+	    return "\u2659";
+	}
 	// black chess pawn	\u2659
 	// white chess pawn	\u265F
     }

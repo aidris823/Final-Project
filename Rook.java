@@ -18,7 +18,12 @@ public class Rook extends Piece {
     }
 
     public String toString() {
-	return null;
+	if (color == Piece.WHITE) {
+	    return "\u265C";
+	}
+	else {
+	    return "\u2656";
+	}
 	// black chess rook	\u2656
 	// white chess rook	\u265C
     }

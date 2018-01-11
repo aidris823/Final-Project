@@ -13,7 +13,12 @@ public class Queen extends Piece {
     }
 
     public  String toString() {
-	return null;
+	if (color == Piece.WHITE) {
+	    return "\u265B";
+	}
+	else {
+	    return "\u2655";
+	}
 	// black chess queen	\u2655
 	// white chess queen	\u265B
     }

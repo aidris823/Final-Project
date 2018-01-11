@@ -13,7 +13,12 @@ public class Knight extends Piece {
     }
 
     public  String toString() {
-	return null;
+        if (color == Piece.WHITE) {
+	    return "\u265E";
+	}
+	else {
+	    return "\u2658";
+	}
 	// black chess knight	\u2658
 	// white chess knight	\u265E
     }

@@ -16,15 +16,8 @@ public abstract class Piece {
     }
     
     public Piece(Location loc, int color) {
-	char col = loc.charAt(0); // need to get char !!! [WRONG]
-	int row = Integer.parseInt(loc); // need to get int !!! [WRONG]
-	if (col < 'a' || col > 'h' || row < 1 || row > 8) {
-	    throw new IllegalArgumentException("a-h and 1-8");
-	}
-	else {
-	    this.color = color;
-	    loc = "" + col + row;
-	}
+	this.color = color;
+	this.loc = loc;
     }
 
     public int getColor() {
@@ -34,32 +27,12 @@ public abstract class Piece {
     public Location getLoc() {
 	return loc;
     }
-    public abstract boolean checkMove(Location toSpot);
+    public abstract boolean checkMove(Location toSpot); // checks if move is legal 
     
-    public abstract boolean makeMove(Location toSpot);
+    public abstract boolean makeMove(Location toSpot); // function that moves
 
-    public abstract Location[] mustBeOpen(Location toSpot);
+    public abstract Location[] mustBeOpen(Location toSpot); // list of all legal moves for certain piece (uses checkMove)
 
     public abstract String toString();
-
-    public abstract Location
-
-    /*
-      Unicode for our chess pieces:
-
-      black chess king	        \u2654
-      black chess queen  	\u2655
-      black chess rook	        \u2656
-      black chess bishop	\u2657
-      black chess knight	\u2658
-      black chess pawn  	\u2659
-      
-      white chess king  	\u265A
-      white chess queen  	\u265B
-      white chess rook  	\u265C
-      white chess bishop	\u265D
-      white chess knight	\u265E
-      white chess pawn  	\u265F
-    */
 
 }

@@ -13,7 +13,12 @@ public class Bishop extends Piece {
     }
 
     public  String toString() {
-	return null;
+        if (color == Piece.WHITE) {
+	    return "\u265D";
+	}
+	else {
+	    return "\u2657";
+	}
 	// black chess bishop	\u2657
 	// white chess bishop	\u265D
     }
