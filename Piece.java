@@ -1,5 +1,5 @@
 public abstract class Piece {
-    
+
     public static final int BLACK;
     public static final int WHITE;
     private int color;
@@ -23,7 +23,7 @@ public abstract class Piece {
     public int getColor() {
 	return color;
     }
-
+    
     public Location getLoc() {
 	return loc;
     }
@@ -34,5 +34,12 @@ public abstract class Piece {
     public abstract Location[] mustBeOpen(Location toSpot); // list of all legal moves for certain piece (uses checkMove)
 
     public abstract String toString();
+
+    public abstract void move();
+    /* CSDOJO NOTES:
+Probably can't have move method because it doesn't say which square I can go to.
+Have a legal moves */
+    public abstract Square[] getLegalMoves();
+    public abstract void capture();
 
 }

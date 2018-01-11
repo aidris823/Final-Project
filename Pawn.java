@@ -1,3 +1,4 @@
+
 public class Pawn extends Piece {
 
     public  boolean checkMove(Location toSpot) {
