@@ -1,40 +1,47 @@
+//Each tile is a Square, so we must build a functional Square class.
+
 public class Square{
+    //Color:
     private int color;
+    //Has a piece on it?:
+    private boolean hasPiece;
+    //Coordinates on the chess grid.
     private int xcor;
     private int ycor;
-    public Piece piece;
-    private int color;
-    private int[] coordinates;
-	
+    private ChessBoard board = new ChessBoard();
+  
+    //Initializes 
     public Square(int xcor, int ycor) {
-	this.xcor = xcor;
-	this.ycor = ycor;
-	piece = null;
+	//Has no coordinates until the ChessBoard gives it coordinates.
+	this.xcor = -1;
+	this.ycor = -1;
+	//Assume it has no color until ChessBoard gives it color:
+	color = -1;
+	//Assume it has no piece on it until otherwise.
+	hasPiece = false;
     }
-    public boolean isPieceOn() {
-	if (piece == null) {
-	    return false;
-	}
-	return true;
-    }
-
-    public void takeSpot(Piece piece) {
-
-	if(this.piece != null) { // if there is a piece on the square
-	    // removes current piece on square and replaces it with current piece
-	    this.piece.getStatus() = true;
-	}
-	this.piece = piece; // replaces the current piece with the piece selected
-    }
-
+    //Getters and setters for fields:
     public void setColor(int color) {
 	this.color = color;
     }
-
     public int getColor() {
 	return color;
     }
-
-    
-
+    public void setXCor(int x){
+	xcor = x;
+    }
+    public int getXCor(){
+	return xcor;
+    }
+    public void setYCor(int y){
+	ycor = y;
+    }
+    public int getYCor(){
+	return ycor;
+    }
+    public void updateHasPiece(){
+	hasPiece = !hasPiece;
+    }
+    //   public Piece getPieceType(){]
+ 
 }
