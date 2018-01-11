@@ -132,7 +132,7 @@ public class Board {
      * <ul>
      * <li>getColor()</li>
      * <li>makeMove()</li>
-     * <li>and for Step 4, mustBeOpen()</li>
+     * <li>and mustBeOpen()</li>
      * </ul>
      *@param from This String should contain a board location in algebraic
      notation (eg "a5").  The Piece in that location will be moved.
@@ -185,7 +185,7 @@ public class Board {
 					       " holds a piece the same color as " + from);
 	
 	// This code handles checking to see if there are pieces in the way of the
-	// move.  You should uncomment this to achieve Step 4.  Note it depends
+	// move.  Note it depends
 	// on Piece having a .mustBeOpen() function that returns an array of all
 	// Locations that must be open.
 	/*
