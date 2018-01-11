@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 public class Knight extends Piece{
   //Determines if a Pawn can move 2 squares or not.
   private boolean hasMoved = false;
@@ -45,4 +46,31 @@ public class Knight extends Piece{
     }
     return ans;
   }
+=======
+public class Knight extends Piece {
+
+    public  boolean checkMove(Location toSpot) {
+	return null;
+    }
+    
+    public  boolean makeMove(Location toSpot){
+	return null;
+    }
+
+    public  Location[] mustBeOpen(Location toSpot) {
+	return null;
+    }
+
+    public  String toString() {
+        if (color == Piece.WHITE) {
+	    return "\u265E";
+	}
+	else {
+	    return "\u2658";
+	}
+	// black chess knight	\u2658
+	// white chess knight	\u265E
+    }
+    
+>>>>>>> Steven
 }

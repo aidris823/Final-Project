@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 public class Pawn extends Piece{
   //Determines if a Pawn can move 2 squares or not.
   private boolean hasMoved = false;
@@ -40,4 +41,32 @@ public class Pawn extends Piece{
     }
     return ans;
   }
+=======
+
+public class Pawn extends Piece {
+
+    public  boolean checkMove(Location toSpot) {
+	return null;
+    }
+    
+    public  boolean makeMove(Location toSpot){
+	return null;
+    }
+
+    public  Location[] mustBeOpen(Location toSpot) {
+	return null;
+    }
+
+    public  String toString() {
+        if (color == Piece.WHITE) {
+	    return "\u265F";
+	}
+	else {
+	    return "\u2659";
+	}
+	// black chess pawn	\u2659
+	// white chess pawn	\u265F
+    }
+    
+>>>>>>> Steven
 }
