@@ -19,7 +19,7 @@ public class Queen extends Piece{
     //Int e: The number of loops a Queen should make in the EAST direction, assuming there are no pieces in the way.
     int e = 7-this.xcor;
     //Int s: The number of loops a Queen should make in the SOUTH direction, assuming there are no pieces in the way.
-    int s = 7-this.ycor
+    int s = 7-this.ycor;
     //Int nw: The number of loops a Queen should go in the NORTHWEST direction, assuming no pieces are in the way.
     int nw = Math.min(xcor,ycor);
     //Int ne: The number of loops a Queen should go in the NORTHEAST direction, assuming no pieces are in the way.
