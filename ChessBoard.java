@@ -58,6 +58,17 @@ public class ChessBoard{
 	    }
 	}
     }
+    //Sets up board...sorry Steven.
+    public void setUpBoard(){
+	//White pawns:
+	for (int i = 0; i <= 7; i++){
+	    board[1][i] = new Pawn(1,i,true,this);
+	}
+       
+    //Moves the piece...sorry Steven.
+    public void move(Square start, Square end){
+	
+    }
     public static void main(String[] arguments){
 	//For now, I am testing to see if the grid was set up properly through this main function.
 

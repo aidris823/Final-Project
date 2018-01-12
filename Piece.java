@@ -5,13 +5,20 @@ public abstract class Piece{
     //If isWhite is false, of course, then it's black.
     private int[] coords;
     private Square squareCurrentlyOn;
-
-    public Piece(int xcor, int ycor) {
+    private ChessBoard board;
+    
+    public Piece(int xcor, int ycor, boolean color, ChessBoard daBoard) {
 	this.xcor = xcor;
 	this.ycor = ycor;
+	if (color){
+	    isWhite = true;
+	}
+	else{
+	    isWhite = false;
+	}
+	board = daBoard;
 	squareCurrentlyOn = new Square(xcor,ycor);
     }
-    public Piece(int xcor, int ycor
     public int[] getCoords() {
 	return coords;
     }

@@ -2,11 +2,9 @@
 public class Pawn extends Piece{
     //Determines if a Pawn can move 2 squares or not.
     private boolean hasMoved = false;
-    private ChessBoard board = new ChessBoard();
-    public Pawn(int xcor, int ycor){
-	super(xcor,ycor);
-    
-	isWhite = false;
+    private ChessBoard board;
+    public Pawn(int xcor, int ycor, boolean color, ChessBoard daBoard){
+	super(xcor,ycor,color,daBoard);
     }
     public Square[] getLegalMoves(){
 	Square[] ans = new Square[64];
