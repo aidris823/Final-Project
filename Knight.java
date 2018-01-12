@@ -1,3 +1,4 @@
+
 public class Knight extends Piece{
   //Determines if a Pawn can move 2 squares or not.
   private boolean hasMoved = false;
@@ -45,4 +46,5 @@ public class Knight extends Piece{
     }
     return ans;
   }
+
 }

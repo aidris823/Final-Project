@@ -1,3 +1,4 @@
+
 public class Bishop extends Piece{
 
   private ChessBoard board = new ChessBoard();
