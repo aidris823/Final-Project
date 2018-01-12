@@ -8,9 +8,9 @@ public class Square{
     //Coordinates on the chess grid.
     private int xcor;
     private int ycor;
-    private ChessBoard board = new ChessBoard();
+   
   
-    //Initializes 
+    //Initializes a Square/Constructor:
     public Square(int xcor, int ycor) {
 	//Has no coordinates until the ChessBoard gives it coordinates.
 	this.xcor = -1;

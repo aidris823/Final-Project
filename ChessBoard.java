@@ -1,6 +1,6 @@
 import java.util.Arrays;
 public class ChessBoard{
-    //Square colors:
+    //Square colors:f
     private static final int black = 40;
     private static final int white = 107;
   
@@ -15,7 +15,7 @@ public class ChessBoard{
 	board = new Square[8][8];
 	for (int i = 0; i <= 7; i++){
 	    for (int j = 0; j <= 7; j++){
-		board[i][j] = new Square();
+		board[i][j] = new Square(i,j);
 	    }
 
 	}
