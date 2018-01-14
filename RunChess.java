@@ -130,7 +130,7 @@ public class RunChess extends JFrame implements MouseListener{
 		}
 		//When move a pawn to kill opposit's piece
 		//if the row is just 1 step ahead and the piece to kill is at 1 column aside
-		else if(previousSquare.getRow() == source.getRow() - 1 && Math.abs(previousSquare.getCol() - source.getCol()) == 1)	{
+		else if(previousSquare.getRow() == source.getRow() - 1 && Math.abs(previousSquare.getCol() - source.getCol()) == 1) {
 		    System.out.println("move piece is called for pawn");
 		    enableDeleteAction = true;
 		    movePiece();//call movePiece() method
@@ -138,7 +138,35 @@ public class RunChess extends JFrame implements MouseListener{
 		}
 		else{clear();}
 	    }
-	
+
+	    /*  
+	     * ----------------------------------------------------------------------
+	     * ------------------------------- KNIGHT -------------------------------
+	     * ----------------------------------------------------------------------
+	     */
+	    
+	    else if(pieceType.equalsIgnoreCase("knight")) {
+		//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+		if((previousSquare.getRow() == source.getRow() + 1 && previousSquare.getCol() == source.getCol() + 2)
+		   || (previousSquare.getRow() == source.getRow() + 1 && previousSquare.getCol() == source.getCol() - 2)
+		   || (previousSquare.getRow() == source.getRow() - 1 && previousSquare.getCol() == source.getCol() + 2)
+		   || (previousSquare.getRow() == source.getRow() - 1 && previousSquare.getCol() == source.getCol() - 2)
+		   || (previousSquare.getRow() == source.getRow() + 2 && previousSquare.getCol() == source.getCol() + 1)
+		   || (previousSquare.getRow() == source.getRow() - 2 && previousSquare.getCol() == source.getCol() + 1)
+		   || (previousSquare.getRow() == source.getRow() + 2 && previousSquare.getCol() == source.getCol() - 1)
+		   || (previousSquare.getRow() == source.getRow() - 2 && previousSquare.getCol() == source.getCol() - 1)){
+		    
+		    
+		    System.out.println("move piece is called for knight");
+		    enableDeleteAction = true;
+		    movePiece();//call movePiece() method
+		    oneMoved = true;
+		}
+		
+		
+		else{clear();}
+	    }
+	    
 	}
     }
     
