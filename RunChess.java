@@ -167,9 +167,49 @@ public class RunChess extends JFrame implements MouseListener{
 		else{clear();}
 	    }
 	    
+	
+
+	    /*  
+	     * ----------------------------------------------------------------------
+	     * ------------------------------- BISHOP -------------------------------
+	     * ----------------------------------------------------------------------
+	     */
+	    
+	    else if(pieceType.equalsIgnoreCase("bishop")) {
+		System.out.println("prev row col "+previousSquare.getRow()+" "+previousSquare.getCol()+" \n now is "+source.getRow()+" "+source.getCol());
+		//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+		int rowOffset = previousSquare.getRow()- source.getRow();
+		int colOffset = previousSquare.getCol() - source.getCol();
+		if(Math.abs(rowOffset) == Math.abs(colOffset)) {
+		    System.out.println("move piece is called for bishop");
+		    enableDeleteAction = true;
+		    movePiece();//call movePiece() method
+		    oneMoved = true;
+		}
+		else{clear();}
+	    }
+	    
+	    /*  
+	     * ----------------------------------------------------------------------
+	     * -------------------------------- ROOK --------------------------------
+	     * ----------------------------------------------------------------------
+	     */
+	    
+	    
+	    else if(pieceType.equalsIgnoreCase("rook")) {
+		System.out.println("prev row col "+previousSquare.getRow()+" "+previousSquare.getCol()+" \n now is "+source.getRow()+" "+source.getCol());
+		//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+		if(previousSquare.getRow() == source.getRow() || previousSquare.getCol() == source.getCol()) {
+		    System.out.println("move piece is called for rook");
+		    enableDeleteAction = true;
+		    movePiece();//call movePiece() method
+		    oneMoved = true;
+		}
+		else{clear();}
+	    }
+	    
 	}
     }
-    
     
     public void movePiece() {
 	if(!source.isFree() && !previousSquare.getPiece().getColor().equalsIgnoreCase(pieceColor) && enableDeleteAction) {
