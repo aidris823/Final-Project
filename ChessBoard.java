@@ -13,11 +13,12 @@ public class ChessBoard {
         board = new Square[8][8];
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                board[i][j] = new Square(i, j, squareColor(i,j));
+                board[i][j] = new Square(i, j, squareColor(i, j));
             }
         }
         //Gives each square a color.
         setBoardColor();
+        setUpBoard();
     }
 
     //Gets board;
@@ -55,24 +56,30 @@ public class ChessBoard {
             }
         }
     }
-// new Pawn(1, i, true, this);
+
+    // new Pawn(1, i, true, this);
     //Sets up board...sorry Steven.
     public void setUpBoard() {
         //Pawns:
         for (int i = 0; i <= 7; i++) {
             //White pawns:
             board[i][7].updateHasPiece();
-            board[i][7].updatePieceType(new Pawn(i,7,true,this));
+            board[i][7].updatePieceType(new Pawn(i, 7, true, this));
             //Black pawns:
             board[i][1].updateHasPiece();
-            board[i][1].updatePieceType(new Pawn(i,7,false,this));
+            board[i][1].updatePieceType(new Pawn(i, 7, false, this));
         }
         //Knights:
 
         //White Knights:
         board[1][0].updateHasPiece();
+        board[1][0].updatePieceType(new Knight(1,0,true,this));
+        
+        board[6][0].updateHasPiece();
+        board[6][0].updatePieceType(new Knight(1,0,true,this));
 
     }
+
     //Helper function to determine whether a square at a particular coordinate should be white or black.
     public int squareColor(int x, int y) {
         //Return white for [Odd, Odd] or [Even, Even] coordinates.
@@ -83,40 +90,34 @@ public class ChessBoard {
         return black;
     }
 
-        //Moves the piece...sorry Steven
-    public void move (int xcorStart, int ycorStart, int xcorEnd, int ycorEnd) {
+    //Moves the piece...sorry Steven
+    public void move(int xcorStart, int ycorStart, int xcorEnd, int ycorEnd) {
     }
 
     //Helper method that converts chess talk (E4, A1, etc) into usable variables:
-    public void moveInEnglish(String start, String end){
-        char[] letters = {'A','B','C','D','E','F','G','H'};
+    public void moveInEnglish(String start, String end) {
+        char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
         int xcorStart = start.charAt(0);
-        for (int i = 0; i <= 7; i++){
-            if (xcorStart == letters[i]){
+        for (int i = 0; i <= 7; i++) {
+            if (xcorStart == letters[i]) {
                 xcorStart = i;
             }
         }
-        int ycorStart = Integer.parseInt(start.substring(1,2));
+        int ycorStart = Integer.parseInt(start.substring(1, 2));
         int xcorEnd = end.charAt(0);
-        for (int i = 0; i <= 7; i++){
-            if (xcorEnd == letters[i]){
+        for (int i = 0; i <= 7; i++) {
+            if (xcorEnd == letters[i]) {
                 xcorEnd = i;
             }
         }
-        int ycorEnd = Integer.parseInt(end.substring(1,2));
-        move(xcorStart,ycorStart,xcorEnd,ycorEnd);
+        int ycorEnd = Integer.parseInt(end.substring(1, 2));
+        move(xcorStart, ycorStart, xcorEnd, ycorEnd);
     }
 
-    public static void main (String[] arguments){
-        //For now, I am testing to see if the grid was set up properly through this main function.
-
-        ChessBoard x = new ChessBoard();
-        Square[][] board = x.getBoard();
-
-        //Make an 8x8 2D Array of Strings:
-        String[][] testBoard;
-        testBoard = new String[8][8];
-
+    //Demo: Show that a Black and White chess board is possible:
+    public String printColorGrid() {
+        String[][] testBoard = new String[8][8];
+        String ans = "";
         //Give each spot a "B" if the Square at that coordinate has a color value equal to 40, "W" if it is 107:
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
@@ -129,7 +130,26 @@ public class ChessBoard {
                 }
             }
         }
-            //Print the array:
-            System.out.println(Arrays.deepToString(testBoard));
+        for (int i = 0; i <= 7; i++) {
+            ans += toString(testBoard[i]) + "\n";
         }
+        return ans;
     }
+
+    public String toString(String[] row) {
+        String ans = "";
+        for (int i = 0; i < row.length; i++) {
+            ans += (row[i]);
+            ans += " ";
+        }
+        return ans;
+    }
+
+    //Demo for Tuesday:
+    public static void main(String[] arguments) {
+        ChessBoard boardie = new ChessBoard();
+        //Print colored board:
+        System.out.println(boardie.printColorGrid());
+
+    }
+}
