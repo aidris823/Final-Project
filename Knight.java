@@ -12,41 +12,59 @@ public class Knight extends Piece{
     public Square[] getLegalMoves(){
         Square[] ans = new Square[8];
         int counter = 0;
+
+        //All eight directions accounted for:
+
+        // Go right two and go down one direction:
         if (isInsideBounds(getX()+2,getY()+1) /*Is that move within the squares of the board? */
                 && getColor() != (board[getX()+2][getY()+1]).getPieceType().getColor()
                         /*Even if it is legal board wise, is there a piece on that square that is the same color? */){
             ans[counter] = new Square(getX()+2,getY()+1,squareColor(getX(),getY()+1));
             counter++;
         }
-        //Same thing but for the other seven moves that the Knight could possibly have:
-        if (isInsideBounds(xcor+2,ycor-1)&& getColor() != (board[xcor+2][ycor-1]).isPieceWhite()){
-            ans[counter] = new Square(xcor+2,ycor-1);
+
+        //Go right two and go up one direction:
+        if (isInsideBounds(getX()+2,getY()-1)&& getColor() != (board[getX()+2][getY()-1]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()+2,getY()-1,squareColor(getX()+2,getY()-1));
             counter++;
         }
-        if (isInsideBounds(xcor+1,ycor-2)&& getColor() != (board[xcor+1][ycor-2]).isPieceWhite()){
-            ans[counter] = new Square(xcor+1,ycor-2);
+
+        //Go right one and go up two direction:
+        if (isInsideBounds(getX()+1,getY()-2)&& getColor() != (board[getX()+1][getY()-2]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()+1,getY()-2,squareColor(getX()+1,getY()-2));
             counter++;
         }
-        if (isInsideBounds(xcor+1,ycor+2)&& getColor() != (board[xcor+1][ycor+2]).isPieceWhite()){
-            ans[counter] = new Square(xcor+1,ycor+2);
+
+        //Go right one and go down two direction:
+        if (isInsideBounds(getX()+1,getY()+2)&& getColor() != (board[getX()+1][getY()+2]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()+1,getY()+2,squareColor(getX()+1,getY()+2));
             counter++;
         }
-        if (isInsideBounds(xcor-2,ycor-1)&& getColor() != (board[xcor-2][ycor-1]).isPieceWhite()){
-            ans[counter] = new Square(xcor-2,ycor-1);
+
+        //Go left two and go up one direction:
+        if (isInsideBounds(getX()-2,getY()-1)&& getColor() != (board[getX()-2][getY()-1]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()-2,getY()-1,squareColor(getX()-2,getY()-1));
             counter++;
         }
-        if (isInsideBounds(xcor-2,ycor+1)&& getColor()!= (board[xcor-2][ycor+1]).isPieceWhite()){
-            ans[counter] = new Square(xcor-2,ycor+1);
+
+        //Go left two and go down one direction:
+        if (isInsideBounds(getX()-2,getY()+1) && getColor()!= (board[getX()-2][getY()+1]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()-2,getY()+1,squareColor(getX()-2,getY()+1));
             counter++;
         }
-        if (isInsideBounds(xcor-1,ycor-2)&& getColor() != (board[xcor-1][ycor-2]).isPieceWhite()){
-            ans[counter] = new Square(xcor-1,ycor-2);
+
+        //Go left one and go up two direction:
+        if (isInsideBounds(getX()-1,getY()-2)&& getColor() != (board[getX()-1][getY()-2]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()-1,getY()-2,squareColor(getX()-1,getY()-2));
             counter++;
         }
-        if (isInsideBounds(xcor-1,ycor+2)&& getColor() != (board[xcor-1][ycor+2]).isPieceWhite()){
-            ans[counter] = new Square(xcor-1,ycor+2);
+
+        //Go left one and go down two direction:
+        if (isInsideBounds(getX()-1,getY()+2)&& getColor() != (board[getX()-1][getY()+2]).getPieceType().getColor()){
+            ans[counter] = new Square(getX()-1,getY()+2,squareColor(getX()-1,getY()+2));
             counter++;
         }
+
         return ans;
     }
 
