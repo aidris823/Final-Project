@@ -60,23 +60,30 @@ public class ChessBoard {
     // new Pawn(1, i, true, this);
     //Sets up board...sorry Steven.
     public void setUpBoard() {
-        //Pawns:
+        //PAWNS:
+
         for (int i = 0; i <= 7; i++) {
             //White pawns:
-            board[i][7].updateHasPiece();
-            board[i][7].updatePieceType(new Pawn(i, 7, true, this));
+            board[6][i].updateHasPiece();
+            board[6][i].updatePieceType(new Pawn(6, i, true, this));
             //Black pawns:
-            board[i][1].updateHasPiece();
-            board[i][1].updatePieceType(new Pawn(i, 7, false, this));
+            board[1][i].updateHasPiece();
+            board[1][i].updatePieceType(new Pawn(1, i, false, this));
         }
-        //Knights:
+        //KNIGHTS:
 
         //White Knights:
-        board[1][0].updateHasPiece();
-        board[1][0].updatePieceType(new Knight(1,0,true,this));
+        board[7][1].updateHasPiece();
+        board[7][1].updatePieceType(new Knight(7,1,true,this));
+        board[7][6].updateHasPiece();
+        board[7][6].updatePieceType(new Knight(7,6,true,this));
+        //Black Knights:
+        board[0][1].updateHasPiece();
+        board[0][1].updatePieceType(new Knight(0,1,false,this));
+        board[0][6].updateHasPiece();
+        board[0][6].updatePieceType(new Knight(0,6,false,this));
+
         
-        board[6][0].updateHasPiece();
-        board[6][0].updatePieceType(new Knight(1,0,true,this));
 
     }
 
@@ -131,12 +138,39 @@ public class ChessBoard {
             }
         }
         for (int i = 0; i <= 7; i++) {
-            ans += toString(testBoard[i]) + "\n";
+            ans += rowToString(testBoard[i]) + "\n";
         }
         return ans;
     }
 
-    public String toString(String[] row) {
+    //Show that pieces were set up properly:
+    public String printPieceSetUp(){
+        String[][] testBoard = new String[8][8];
+        String ans = "";
+
+            for (int i = 0; i <= 7; i++) {
+                for (int j = 0; j <= 7; j++) {
+                    if (!board[i][j].isHasPiece()){
+                        testBoard[i][j] = "_";
+                    }
+                    else if (board[i][j].getPieceType().getName().equals("P")) {
+                        testBoard[i][j] = "P";
+                    }
+                    else if (board[i][j].getPieceType().getName().equals("N")) {
+                        testBoard[i][j] = "N";
+                    }
+                }
+            }
+
+        for (int i = 0; i <= 7; i++){
+            ans += rowToString(testBoard[i]) + "\n";
+        }
+        return ans;
+    }
+
+
+    //Takes a row and converts it into a string form:
+    public String rowToString(String[] row) {
         String ans = "";
         for (int i = 0; i < row.length; i++) {
             ans += (row[i]);
@@ -149,7 +183,12 @@ public class ChessBoard {
     public static void main(String[] arguments) {
         ChessBoard boardie = new ChessBoard();
         //Print colored board:
+        System.out.println("Checkered board:" + "\n");
         System.out.println(boardie.printColorGrid());
 
+        //Print piece set up:
+        System.out.println("Piece setup:" + "\n");
+        System.out.println(boardie.printPieceSetUp());
+        }
+
     }
-}
