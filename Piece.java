@@ -43,7 +43,7 @@ public abstract class Piece{
         "M": Musketeer
         "E": Elephant
         "C": Cannon
-        "L": Prince - L is for "Love Symbol"
+        "L": Prince - L is for "Love Symbol" after the true Prince.
          */
     }
     //Sets the name of the piece; only to be used by the subclasses of piece.
