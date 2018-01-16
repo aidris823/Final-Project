@@ -65,25 +65,35 @@ public class ChessBoard {
         for (int i = 0; i <= 7; i++) {
             //White pawns:
             board[6][i].updateHasPiece();
-            board[6][i].updatePieceType(new Pawn(6, i, true, this));
+            board[6][i].updatePieceType(new Pawn(i, 6, true, this));
             //Black pawns:
             board[1][i].updateHasPiece();
-            board[1][i].updatePieceType(new Pawn(1, i, false, this));
+            board[1][i].updatePieceType(new Pawn(i, 1, false, this));
         }
         //KNIGHTS:
 
         //White Knights:
         board[7][1].updateHasPiece();
-        board[7][1].updatePieceType(new Knight(7,1,true,this));
+        board[7][1].updatePieceType(new Knight(1,7,true,this));
         board[7][6].updateHasPiece();
-        board[7][6].updatePieceType(new Knight(7,6,true,this));
+        board[7][6].updatePieceType(new Knight(6,7,true,this));
         //Black Knights:
         board[0][1].updateHasPiece();
-        board[0][1].updatePieceType(new Knight(0,1,false,this));
+        board[0][1].updatePieceType(new Knight(1,0,false,this));
         board[0][6].updateHasPiece();
-        board[0][6].updatePieceType(new Knight(0,6,false,this));
+        board[0][6].updatePieceType(new Knight(6,0,false,this));
 
-        
+        //BISHOPS:
+        //White Bishops:
+        board[7][2].updateHasPiece();
+        board[7][2].updatePieceType(new Bishop(2,7,true,this));
+        board[7][5].updateHasPiece();
+        board[7][5].updatePieceType(new Bishop(5,7,true,this));
+        //Black Bishops:
+        board[0][2].updateHasPiece();
+        board[0][2].updatePieceType(new Bishop(2,0,false,this));
+        board[0][5].updateHasPiece();
+        board[0][5].updatePieceType(new Bishop(0,5,false,this));
 
     }
 
@@ -158,6 +168,9 @@ public class ChessBoard {
                     }
                     else if (board[i][j].getPieceType().getName().equals("N")) {
                         testBoard[i][j] = "N";
+                    }
+                    else if (board[i][j].getPieceType().getName().equals("B")){
+                        testBoard[i][j] = "B";
                     }
                 }
             }
