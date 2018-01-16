@@ -59,6 +59,7 @@ public class ChessBoard {
 
     // new Pawn(1, i, true, this);
     //Sets up board...sorry Steven.
+
     public void setUpBoard() {
         //PAWNS:
 
@@ -95,6 +96,25 @@ public class ChessBoard {
         board[0][5].updateHasPiece();
         board[0][5].updatePieceType(new Bishop(0,5,false,this));
 
+        //ROOKS:
+        //White Rooks:
+        board[7][0].updateHasPiece();
+        board[7][0].updatePieceType(new Rook(0,7,true,this));
+        board[7][7].updateHasPiece();
+        board[7][7].updatePieceType(new Rook(7,7,true,this));
+        //Black Rooks:
+        board[0][0].updateHasPiece();
+        board[0][0].updatePieceType(new Rook(0,0,false,this));
+        board[0][7].updateHasPiece();
+        board[0][7].updatePieceType(new Rook(7,0,false,this));
+
+        //QUEENS:
+        //White Queen:
+        board[7][3].updateHasPiece();
+        board[7][3].updatePieceType(new Queen(3,7,true,this));
+        //Black Queen:
+        board[0][3].updateHasPiece();
+        board[0][3].updatePieceType(new Queen(3,0,false,this));
     }
 
     //Helper function to determine whether a square at a particular coordinate should be white or black.
@@ -172,13 +192,18 @@ public class ChessBoard {
                     else if (board[i][j].getPieceType().getName().equals("B")){
                         testBoard[i][j] = "B";
                     }
+                    else if (board[i][j].getPieceType().getName().equals("R")){
+                        testBoard[i][j] = "R";
+                    }
+                    else if (board[i][j].getPieceType().getName().equals("Q")){
+                        testBoard[i][j] = "Q";
+                    }
                 }
             }
-
-        for (int i = 0; i <= 7; i++){
-            ans += rowToString(testBoard[i]) + "\n";
-        }
-        return ans;
+            for (int i = 0; i <= 7; i++){
+                ans += rowToString(testBoard[i]) + "\n";
+            }
+            return ans;
     }
 
 
