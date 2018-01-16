@@ -8,18 +8,30 @@ public class Square{
     //Coordinates on the chess grid.
     private int xcor;
     private int ycor;
-   
+    private Piece pieceCurrentlyOn;
+    
   
-    //Initializes a Square/Constructor:
-    public Square(int xcor, int ycor) {
+    //Initializes a Square / Constructor for no piece:
+    public Square(int xcor, int ycor, int color) {
 	//Has no coordinates until the ChessBoard gives it coordinates.
-	this.xcor = -1;
-	this.ycor = -1;
+	this.xcor = xcor;
+	this.ycor = ycor;
 	//Assume it has no color until ChessBoard gives it color:
-	color = -1;
+	this.color = color;
 	//Assume it has no piece on it until otherwise.
 	hasPiece = false;
+	pieceCurrentlyOn = null;
     }
+
+    //Initializes a Square / Constructor for a piece:
+    public Square(int xcor, int ycor, int color, Piece daPiece){
+	this.xcor = xcor;
+	this.ycor = ycor;
+	this.color = color;
+	hasPiece = true;
+	pieceCurrentlyOn = daPiece;
+    }
+    
     //Getters and setters for fields:
     public void setColor(int color) {
 	this.color = color;
@@ -39,9 +51,17 @@ public class Square{
     public int getYCor(){
 	return ycor;
     }
+    public boolean isHasPiece(){
+	return hasPiece;
+    }
     public void updateHasPiece(){
 	hasPiece = !hasPiece;
     }
-    //   public Piece getPieceType(){]
+    public void updatePieceType(Piece daPiece){
+	pieceCurrentlyOn = daPiece;
+    }
+    public Piece getPieceType(){
+	return pieceCurrentlyOn;
+    }
  
 }

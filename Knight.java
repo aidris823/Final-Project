@@ -8,6 +8,9 @@ public class Knight extends Piece{
         this.daBoard = daBoard;
         board = daBoard.getBoard();
 
+	//Name: "N"
+	setName("N");
+
     }
     public Square[] getLegalMoves(){
         Square[] ans = new Square[8];
