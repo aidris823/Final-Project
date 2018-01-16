@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 public class ChessBoard {
     //Square colors:
     private static final int black = 40;
@@ -115,6 +115,14 @@ public class ChessBoard {
         //Black Queen:
         board[0][3].updateHasPiece();
         board[0][3].updatePieceType(new Queen(3,0,false,this));
+
+        //KING:
+        //White King:
+        board[7][4].updateHasPiece();
+        board[7][4].updatePieceType(new King(4,7,true,this));
+        //Black King:
+        board[0][4].updateHasPiece();
+        board[0][4].updatePieceType(new King(4,0,false,this));
     }
 
     //Helper function to determine whether a square at a particular coordinate should be white or black.
@@ -127,7 +135,7 @@ public class ChessBoard {
         return black;
     }
 
-    //Moves the piece...sorry Steven
+    //Moves the piece.
     public void move(int xcorStart, int ycorStart, int xcorEnd, int ycorEnd) {
     }
 
@@ -197,6 +205,9 @@ public class ChessBoard {
                     }
                     else if (board[i][j].getPieceType().getName().equals("Q")){
                         testBoard[i][j] = "Q";
+                    }
+                    else if (board[i][j].getPieceType().getName().equals("K")){
+                        testBoard[i][j] = "K";
                     }
                 }
             }
