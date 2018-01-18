@@ -135,14 +135,14 @@ public class Board extends JPanel {
 	this.square[7][5].setPiece(whiteBishop[1]);
 	//placing Queen & King in the chess board
 	this.square[0][3].add(blackQueen[0]);
-	this.square[0][4].add(blackKing[0]);
+	this.square[0][4].add(blackKing[1]);
 	this.square[7][3].add(whiteQueen[0]);
-	this.square[7][4].add(whiteKing[0]);	
+	this.square[7][4].add(whiteKing[1]);	
 	//set the pieces
 	this.square[0][3].setPiece(blackQueen[0]);
-	this.square[0][4].setPiece(blackKing[0]);
+	this.square[0][4].setPiece(blackKing[1]);
 	this.square[7][3].setPiece(whiteQueen[0]);
-	this.square[7][4].setPiece(whiteKing[0]);	
+	this.square[7][4].setPiece(whiteKing[1]);	
 	
 	setAsNotFree();
 	
@@ -210,7 +210,6 @@ public class Board extends JPanel {
 		
 		setAsNotFree();
 	    }
-	
     }
     
 

@@ -9,6 +9,7 @@ public class RunChess extends JFrame implements MouseListener{
 
     
     public static Board board = new Board();
+    private boolean isWhitesTurn = true;
     public static boolean hasActive = false; 
     public static Square previousSquare = null;
     public static String pieceColor = "";
