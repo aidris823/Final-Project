@@ -1,40 +1,51 @@
-public class Square{
-    private int color;
-    private int xcor;
-    private int ycor;
-    public Piece piece;
-    private int color;
-    private int[] coordinates;
+import javax.swing.JPanel;
+
+public class Square extends JPanel{
+	private boolean status; //Necessary for isFree
+	private Piece piece;
+	public boolean isActivated;
+	private int row;
+	private int col;
 	
-    public Square(int xcor, int ycor) {
-	this.xcor = xcor;
-	this.ycor = ycor;
-	piece = null;
-    }
-    public boolean isPieceOn() {
-	if (piece == null) {
-	    return false;
+	//Assumes no piece is on it:
+	public Square(int row, int col) {
+		this.row = row;
+		this.col = col;
+		piece = null;
+		status = true;
+		isActivated = false;
 	}
-	return true;
-    }
-
-    public void takeSpot(Piece piece) {
-
-	if(this.piece != null) { // if there is a piece on the square
-	    // removes current piece on square and replaces it with current piece
-	    this.piece.getStatus() = true;
+	
+	//Assumes a piece is on it:
+	public Square(int row, int col, Piece piece) {
+		this.row = row;
+		this.col = col;
+		this.piece = piece;
+		status = true;
+		isActivated = false;
 	}
-	this.piece = piece; // replaces the current piece with the piece selected
-    }
-
-    public void setColor(int color) {
-	this.color = color;
-    }
-
-    public int getColor() {
-	return color;
-    }
-
-    
-
+	
+	//Getters/Setters:
+	public boolean isFree() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+	public Piece getPiece() {
+		return piece;
+	}
+	public void updatePosition(int row, int col) {
+		this.row = row;
+		this.col = col;
+	}
+	public int getRow() {
+		return this.row;
+	}
+	public int getCol() {
+		return this.col;
+	}
 }
