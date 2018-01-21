@@ -1,0 +1,295 @@
+import java.awt.event.*;
+import javax.swing.*;
+
+public class RunChess extends JFrame implements MouseListener{
+	public static ChessBoard board;
+	public static boolean hasActive;
+	public static Square previousSquare;
+	public static boolean pieceColor;
+	public static Square source;
+	public static int counter;
+	public static boolean oneMoved;
+	public static boolean enableDeleteAction;
+	public static JMenuBar menuBar;
+	public static JMenuItem menuAbout;
+	private static boolean isWhitesTurn;
+	
+	public RunChess() {
+		//Initialize variables:
+		board = new ChessBoard();
+		hasActive = false;
+		previousSquare = null;
+		pieceColor = false;
+		source = null;
+		counter = 0;
+		oneMoved = false;
+		enableDeleteAction = false;
+		menuBar = new JMenuBar();
+		menuAbout = new JMenuItem("About");
+		isWhitesTurn = false;
+		
+		getContentPane().add(board);
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				board.square[i][j].addMouseListener(this);
+			}
+		}
+	}
+	public void mouseClicked(MouseEvent e) {
+		//get the reference of clicked source square 
+		source = (Square) e.getSource();
+		
+		//if the source piece is not free then get the type and color of the piece
+		if(!source.isFree()) {
+		    pieceColor = source.getPiece().getColor();
+		}
+		
+		
+		// UNCOMMENT FOR TESTING ---- System.out.println("isActive:"+source.isActive+" isfree: "+source.isFree()+" hasActive?: "+hasActive +" PieceColor is: "+pieceColor);
+		
+		//when square clicked and is not active, not free means containing piece then can move
+		if(!source.isActivated() && !source.isFree()) {
+		    source.setActivated(true);
+		    hasActive = true;
+		    previousSquare = source;
+		}
+
+		/* -------------------------------- NEED TO FIX PAWN MOVEMENT -------------------------------- */
+		/* ------------------------------------ FIX THE DIAGONALS ------------------------------------ */
+		
+		else if(hasActive) { //when there is an active and the clicked square is free
+		    // UNCOMMENT FOR TESTIGN ---- System.out.println("Piece type is :"+previousSquare.getPiece().getPieceType());
+		    String pieceType = previousSquare.getPiece().getPieceType();
+		    boolean pieceColor = previousSquare.getPiece().getColor();
+
+
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * ---------------------------- WHITE PAWN ------------------------------
+		     * ----------------------------------------------------------------------
+		     */
+
+
+		    
+		    if(pieceType.equalsIgnoreCase("pawn") && pieceColor == true) {
+			// UNCOMMENT FOR TESTING ---- System.out.println("row number is"+previousSquare.getRow());
+			//TODO whether the pawn is black or white is not clicked
+			//if at initial position source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			if((previousSquare.getRow() == 6 && (previousSquare.getRow() == source.getRow() + 1 || previousSquare.getRow() == source.getRow() + 2)) && previousSquare.getCol() == source.getCol()) {
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for pawn");
+			    movePiece();
+			    oneMoved = true;
+			}
+			//When is not at initial position & destination is row+1 at the same column
+			else if( previousSquare.getRow() == source.getRow() + 1 && previousSquare.getCol() == source.getCol()) {
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for pawn");
+			    movePiece();
+			    oneMoved = true;
+			}
+			//When move a pawn to kill opposit's piece
+			//if the row is just 1 step ahead and the piece to kill is at 1 column aside
+			else if(previousSquare.getRow() == source.getRow() + 1 && Math.abs(previousSquare.getCol() - source.getCol()) == 1) {
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for pawn");
+			    enableDeleteAction = true;
+			    movePiece();
+			    oneMoved = true;
+			}
+			else{clear();}
+		    }
+
+
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * ----------------------------- BLACK PAWN -----------------------------
+		     * ----------------------------------------------------------------------
+		     */
+		    
+		    
+		    else if(pieceType.equalsIgnoreCase("pawn") && pieceColor == false) {
+			// UNCOMMENT FOR TESTING ---- System.out.println("row number is"+previousSquare.getRow());
+			//if at initial position source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			if((previousSquare.getRow() == 1 && (previousSquare.getRow() == source.getRow() - 1
+							     || previousSquare.getRow() == source.getRow() - 2)) && previousSquare.getCol() == source.getCol()){
+			    System.out.println("move piece is called for pawn");
+			    movePiece();
+			    oneMoved = true;
+			}
+			//When is not at initial position & destination is row+1 at the same column
+			else if( previousSquare.getRow() == source.getRow() - 1 && previousSquare.getCol() == source.getCol()) {
+			    // UNCOMMENT FOR TESTIGN ---- System.out.println("move piece is called for pawn");
+			    movePiece();
+			    oneMoved = true;
+			}
+			//When move a pawn to kill opposit's piece
+			//if the row is just 1 step ahead and the piece to kill is at 1 column aside
+			else if(previousSquare.getRow() == source.getRow() - 1 && Math.abs(previousSquare.getCol() - source.getCol()) == 1) {
+			    // UNCOMMENT FOR TESGTING ---- System.out.println("move piece is called for pawn");
+			    enableDeleteAction = true;
+			    movePiece();//call movePiece() method
+			    oneMoved = true;
+			}
+			else{clear();}
+		    }
+
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * ------------------------------- KNIGHT -------------------------------
+		     * ----------------------------------------------------------------------
+		     */
+		    
+		    else if(pieceType.equalsIgnoreCase("knight")) {
+			//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			if((previousSquare.getRow() == source.getRow() + 1 && previousSquare.getCol() == source.getCol() + 2)
+			   || (previousSquare.getRow() == source.getRow() + 1 && previousSquare.getCol() == source.getCol() - 2)
+			   || (previousSquare.getRow() == source.getRow() - 1 && previousSquare.getCol() == source.getCol() + 2)
+			   || (previousSquare.getRow() == source.getRow() - 1 && previousSquare.getCol() == source.getCol() - 2)
+			   || (previousSquare.getRow() == source.getRow() + 2 && previousSquare.getCol() == source.getCol() + 1)
+			   || (previousSquare.getRow() == source.getRow() - 2 && previousSquare.getCol() == source.getCol() + 1)
+			   || (previousSquare.getRow() == source.getRow() + 2 && previousSquare.getCol() == source.getCol() - 1)
+			   || (previousSquare.getRow() == source.getRow() - 2 && previousSquare.getCol() == source.getCol() - 1)){
+			    
+			    
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for knight");
+			    enableDeleteAction = true;
+			    movePiece();
+			    oneMoved = true;
+			}
+			
+			
+			else{clear();}
+		    }
+		    
+		
+
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * ------------------------------- BISHOP -------------------------------
+		     * ----------------------------------------------------------------------
+		     */
+		    
+		    else if(pieceType.equalsIgnoreCase("bishop")) {
+			// UNCOMMENT FOR TESTING ---- System.out.println("prev row col "+previousSquare.getRow()+" "+previousSquare.getCol()+" \n now is "+source.getRow()+" "+source.getCol());
+			//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			int rowOffset = previousSquare.getRow()- source.getRow();
+			int colOffset = previousSquare.getCol() - source.getCol();
+			if(Math.abs(rowOffset) == Math.abs(colOffset)) {
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for bishop");
+			    enableDeleteAction = true;
+			    movePiece();
+			    oneMoved = true;
+			}
+			else{clear();}
+		    }
+		    
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * -------------------------------- ROOK --------------------------------
+		     * ----------------------------------------------------------------------
+		     */
+		    
+		    
+		    else if(pieceType.equalsIgnoreCase("rook")) {
+			// UNCOMMENT FOR TESTING ---- System.out.println("prev row col "+previousSquare.getRow()+" "+previousSquare.getCol()+" \n now is "+source.getRow()+" "+source.getCol());
+			//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			if(previousSquare.getRow() == source.getRow() || previousSquare.getCol() == source.getCol()) {
+			    //UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for rook");
+			    enableDeleteAction = true;
+			    movePiece();
+			    oneMoved = true;
+			}
+			else{clear();}
+		    }
+
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * ------------------------------- QUEEN -------------------------------
+		     * ----------------------------------------------------------------------
+		     */
+		    
+		    
+		    else if(pieceType.equalsIgnoreCase("queen")) {
+			// UNCOMMENT FOR TESTING ---- System.out.println("prev row col "+previousSquare.getRow()+" "+previousSquare.getCol()+" \n now is "+source.getRow()+" "+source.getCol());
+			//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			int rowOffset = previousSquare.getRow()- source.getRow();
+			int colOffset = previousSquare.getCol() - source.getCol();
+			if(Math.abs(rowOffset) == Math.abs(colOffset) 
+			   || previousSquare.getRow() == source.getRow()
+			   || previousSquare.getCol() == source.getCol()
+			   ) {
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for queen");
+			    enableDeleteAction = true;
+			    movePiece();
+			    oneMoved = true;
+			}
+			else{clear();}
+		    }
+		    
+		    
+		    /*  
+		     * ----------------------------------------------------------------------
+		     * -------------------------------- KING --------------------------------
+		     * ----------------------------------------------------------------------
+		     */
+		    
+		    
+		    else if(pieceType.equalsIgnoreCase("king")) {
+			// UNCOMMENT FOR TESTING ---- System.out.println("prev row col "+previousSquare.getRow()+" "+previousSquare.getCol()+" \n now is "+source.getRow()+" "+source.getCol());
+			//if source's row is equal destination's row + 1 or 2 && source's column equal destination column.
+			int rowOffset = previousSquare.getRow()- source.getRow();
+			int colOffset = previousSquare.getCol() - source.getCol();
+			if(Math.abs(rowOffset) == 1 ||  Math.abs(colOffset) == 1) {
+			    // UNCOMMENT FOR TESTING ---- System.out.println("move piece is called for king");
+			    enableDeleteAction = true;
+			    movePiece();
+			    oneMoved = true;
+			}
+			else{clear();}
+		    }
+		}
+	    }
+	    
+	    public void movePiece() {
+		if(!source.isFree() && !previousSquare.getPiece().getColor() == pieceColor && enableDeleteAction) {
+		    source.remove(source.getPiece());
+		    source.setPiece(null);
+		    enableDeleteAction = false;
+		}
+		source.add(previousSquare.getPiece());
+		source.setPiece(previousSquare.getPiece());
+		source.revalidate();
+		board.repaint();
+		hasActive = false;
+		previousSquare.setStatus(true);
+		previousSquare.setPiece(null);
+		previousSquare.setActivated(false);
+		source.setStatus(false); 
+		previousSquare = null; //clear
+	    }
+	    
+	    public void clear() { //Clear the properties for the next time
+		// UNCOMMENT FOR TESTING ---- System.out.println("Piece was not moved"); 
+		hasActive = false;
+		oneMoved = false;
+		enableDeleteAction = false;
+		previousSquare.setActivated(false);
+		previousSquare = null; //clear square before
+		source = null;
+	    }
+	    
+	    
+	    public static void main(String[] string) {	
+		JFrame frame = new RunChess();
+		frame.setSize(700, 700);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	    }
+	    
+	    
+	    
+	    
+	    public void mouseEntered(MouseEvent e) {}
+	    public void mouseExited(MouseEvent e) {}
+	    public void mousePressed(MouseEvent e) {}
+	    public void mouseReleased(MouseEvent e) {}
+	}
