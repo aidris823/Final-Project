@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 
-public class ChessBoard {
+public class ChessBoard extends JPanel {
 	public Square[][] square = new Square[8][8];
 	//Sets up colors of squares according to RGB configuration:
 	public Color black = new Color(150,100,50);
@@ -25,11 +25,14 @@ public class ChessBoard {
 	public King[] wKing = new King[1];
 	
 	public ChessBoard() {
-		
+		setSquares();
+		setLayout(new GridLayout(8,8));
+		createPieces();
+		setPieces();
 	}
 	
 	
-	public void setSquarePositions() {
+	public void setSquares() {
 		for (int i = 0; i <= 7; i++) {
 			for (int j = 0; j <= 7; j++) {
 		//Declares each square in the array to exist:
@@ -46,7 +49,7 @@ public class ChessBoard {
 	}
 	
 	//Now the pieces exist.
-	public void setPieces() {
+	public void createPieces() {
 		//Pawns:
 		for (int i = 0; i <= 7; i++) {
 			bPawns[i] = new Pawn(false);
@@ -72,14 +75,73 @@ public class ChessBoard {
 	}
 	
 	//Set up board:
-	public void initializeBoard() {
+	public void setPieces() {
 		//Pawns:
 		for (int i = 0; i <= 7; i++) {
 			square[1][i].add(bPawns[i]);
 			square[1][i].setPiece(bPawns[i]);
-			square[6][i].add(wPawns[i]);
-			square[6][i].add(wPawns[i]);
+			square[1][i].setStatus(false);
 			
+			square[6][i].add(wPawns[i]);
+			square[6][i].setPiece(wPawns[i]);
+			square[6][1].setStatus(false);
 		}
+		//Minor Pieces and Rooks:
+		//Black Pieces:
+			square[0][0].add(bRooks[0]);
+			square[0][0].setPiece(bRooks[0]);
+			square[0][0].setStatus(false);
+			square[0][7].add(bRooks[1]);
+			square[0][7].setPiece(bRooks[1]);
+			square[0][7].setStatus(false);
+			
+			square[0][1].add(bKnights[0]);
+			square[0][1].setPiece(bKnights[0]);
+			square[0][1].setStatus(false);
+			square[0][6].add(bKnights[1]);
+			square[0][6].setPiece(bKnights[1]);
+			square[0][6].setStatus(false);
+			
+			square[0][2].add(bBishops[0]);
+			square[0][2].setPiece(bBishops[0]);
+			square[0][2].setStatus(false);
+			square[0][5].add(bBishops[1]);
+			square[0][5].setPiece(bBishops[1]);
+			square[0][5].setStatus(false);
+			
+		//White Pieces:
+			square[7][0].add(wRooks[0]);
+			square[7][0].setPiece(wRooks[0]);
+			square[7][0].setStatus(false);
+			square[7][7].add(wRooks[1]);
+			square[7][7].setPiece(wRooks[1]);
+			square[7][7].setStatus(false);
+			
+			square[7][1].add(wKnights[0]);
+			square[7][1].setPiece(wKnights[0]);
+			square[7][1].setStatus(false);
+			square[7][6].add(wKnights[1]);
+			square[7][6].setPiece(wKnights[1]);
+			square[7][6].setStatus(false);
+			
+			square[7][2].add(wBishops[0]);
+			square[7][2].setPiece(wBishops[0]);
+			square[7][2].setStatus(false);
+			square[7][5].add(wBishops[1]);
+			square[7][5].setPiece(wBishops[1]);
+			square[7][5].setStatus(false);
+			
+		//Queens:
+			square[0][2].add(bQueen[0]);
+			square[0][2].setStatus(false);
+			square[7][2].add(wQueen[0]);
+			square[7][2].setStatus(false);
+			
+		//Kings:
+			square[0][3].add(bKing[0]);
+			square[0][3].setStatus(false);
+			square[7][3].add(wKing[0]);
+			square[7][3].setStatus(false);
+		}
+	
 	}
-}
