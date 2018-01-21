@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 public class RunChess extends JFrame implements MouseListener{
     
     public static Board board = new Board();
+    public boolean whitesTurn = true;
     public static boolean hasActive = false; 
     public static Square previousSquare = null;
     public static String pieceColor = "";
@@ -48,6 +49,18 @@ public class RunChess extends JFrame implements MouseListener{
 	//if the source piece is not free then get the type and color of the piece
 	if(!source.isFree()) {
 	    pieceColor = source.getPiece().getColor();
+	    if (pieceColor.equals("white")){
+		if (!whitesTurn){
+		    System.out.println("It is black's turn.");
+		    return;
+		}
+	    }
+	    if (pieceColor.equals("black")){
+		if (whitesTurn){
+		    System.out.println("It is white's turn.");
+		    return;
+		}
+	    }
 	}
 	
 	
@@ -252,6 +265,7 @@ public class RunChess extends JFrame implements MouseListener{
 		else{clear();}
 	    }
 	}
+	whitesTurn = !whitesTurn;
     }
     
     public void movePiece() {
@@ -270,6 +284,7 @@ public class RunChess extends JFrame implements MouseListener{
 	previousSquare.isActive = false;
 	source.setStatus(false); 
 	previousSquare = null; //clear
+	whitesTurn = !whitesTurn;
     }
     
     public void clear() { //Clear the properties for the next time
