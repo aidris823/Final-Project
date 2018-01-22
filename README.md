@@ -1,6 +1,6 @@
 # Final-Project
 
-ChessGUI:
+ChessGUI by Steven Chen & Anand Idris, Period 9:
 
 Welcome to our Final-Project, whose goal is/was to be a functional chess game.
 
