@@ -64,8 +64,6 @@ public class RunChess extends JFrame implements MouseListener{
 	}
 	
 	
-	// UNCOMMENT FOR TESTING ---- System.out.println("isActive:"+source.isActive+" isfree: "+source.isFree()+" hasActive?: "+hasActive +" PieceColor is: "+pieceColor);
-	
 	//when square clicked and is not active, not free means containing piece then can move
 	if(!source.isActive && !source.isFree()) {
 	    source.isActive = true;
@@ -129,20 +127,19 @@ public class RunChess extends JFrame implements MouseListener{
 		//if at initial position source's row is equal destination's row + 1 or 2 && source's column equal destination column.
 		if((previousSquare.getRow() == 1 && (previousSquare.getRow() == source.getRow() - 1
 						     || previousSquare.getRow() == source.getRow() - 2)) && previousSquare.getCol() == source.getCol()){
-		    System.out.println("move piece is called for pawn");
 		    movePiece();
 		    oneMoved = true;
 		}
 		//When is not at initial position & destination is row+1 at the same column
 		else if( previousSquare.getRow() == source.getRow() - 1 && previousSquare.getCol() == source.getCol()) {
-		    // UNCOMMENT FOR TESTIGN ---- System.out.println("move piece is called for pawn");
+		  
 		    movePiece();
 		    oneMoved = true;
 		}
 		//When move a pawn to kill opposit's piece
 		//if the row is just 1 step ahead and the piece to kill is at 1 column aside
 		else if(previousSquare.getRow() == source.getRow() - 1 && Math.abs(previousSquare.getCol() - source.getCol()) == 1) {
-		    // UNCOMMENT FOR TESGTING ---- System.out.println("move piece is called for pawn");
+	        
 		    enableDeleteAction = true;
 		    movePiece();//call movePiece() method
 		    oneMoved = true;
